@@ -10,6 +10,5 @@ jobs:
    - id: etape1
    - name: Affiche le statut du job
    - run: echo "Nom du `job` ${{job.status}}"
-   - name: Affiche le résultat de l'étape 1
-   - run: echo " L'étape 1 a éxécuté le run ${{steps.etape1.conclusion }}" //utilise l'id défini
+
 
