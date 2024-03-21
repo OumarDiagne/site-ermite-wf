@@ -7,5 +7,4 @@ jobs:
    - run: echo "Hello World !"
    - run: env
    - run: echo "Ceci est l'étape 1"
-   - id: etape1
    - run: echo "Nom du `job` ${{job.status}}"
