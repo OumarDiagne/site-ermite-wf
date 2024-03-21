@@ -6,6 +6,7 @@ jobs:
   steps:
    - run: echo "Hello World !"
    - run: env
+   - name: Affiche le résultat de l'étape 1
    - run: echo "Ceci est l'étape 1"
      id: etape1
    - run: echo "Nom du `job` ${{job.status}}"
