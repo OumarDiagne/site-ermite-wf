@@ -7,4 +7,8 @@ jobs:
    - run: echo "Hello World !"
    - run: env
    - run: echo "Ceci est l'étape 1"
+     id: etape1
    - run: echo "Nom du `job` ${{job.status}}"
+   - run: echo "Le runner utilise l'OS ${{ runner.os }}"
+   - run: echo "Le secret est {{ secrets.MY_SECRET }}"   
+   - run: echo " L'étape 1 a éxécuté le run ${{steps.etape1.conclusion }}" //utilise l'id défini$
