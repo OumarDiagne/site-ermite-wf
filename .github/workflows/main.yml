@@ -12,7 +12,4 @@ jobs:
    - run: echo "Nom du `job` ${{job.status}}"
    - name: Affiche le résultat de l'étape 1
    - run: echo " L'étape 1 a éxécuté le run ${{steps.etape1.conclusion }}" //utilise l'id défini
-   - name: Affiche l'OS du runner
-   - run: echo "Le runner utilise l'OS ${{ runner.os }}"
-   - name: Utilise un secret
-   - run: echo "Le secret est ${{ secrets.MY_SECRET }}"
+
