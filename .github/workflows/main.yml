@@ -31,7 +31,7 @@ jobs:
   # Étapes du job
   steps:
    # Checkout du code
-   - uses: actions/checkout@v4
+   - run: echo "Mock test logs" > test-job-${{ strategy.job-index }}.txt
     # Exécution des tests et sauvegarde des résultats dans un fichier texte
     # Le nom du fichier texte inclut l'indice du job dans la matrice
    - run : npm test > test-job-${{ strategy.job-index }}.txt
@@ -40,7 +40,7 @@ jobs:
      uses: actions/upload-artifact@v4
      with:
           # Nom unique pour l'artefact, incluant l'indice du job
-        name: Log de construction pour le job ${{ strategy.job-index }}
+        name: Build log for job ${{ strategy.job-index }}
 
           # Chemin du fichier à téléverser
         path: test-job-${{ strategy.job-index }}.txt
