@@ -4,12 +4,10 @@ jobs:
  say-greats:
   runs-on: ubuntu-latest
   steps:
-   - name: Print greats
    - run: echo "Hello World !"
    - run: env
-   - name: Etape 1
-     run: echo "Ceci est l'étape 1"
-     id: etape1
+   - run: echo "Ceci est l'étape 1"
+   
    
     
   
