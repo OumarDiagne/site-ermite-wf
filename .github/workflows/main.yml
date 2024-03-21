@@ -18,5 +18,5 @@ jobs:
   - name: Affiche l'OS du runner
     run: echo "Le runner utilise l'OS ${{ runner.os }}"
   - name: Utilise un secret
-    run: echo "Le secret est ${{ secrets.MY_SECRET }}"   
+    run: echo "Le secret est ${{ secrets.MY_SECRET }}"
   
