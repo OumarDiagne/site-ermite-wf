@@ -8,5 +8,4 @@ jobs:
    - run: env
    - run: echo "Ceci est l'étape 1"
    - id: etape1
-   - name: Affiche le statut du job
    - run: echo "Nom du `job` ${{job.status}}"
