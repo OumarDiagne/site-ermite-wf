@@ -2,6 +2,7 @@ name: Mon Premier wf
 on: [push]
 jobs:
  say-hello:
+  name : genere un hello et une liste de variable env
   runs-on: ubuntu-latest
   steps: 
    - run: echo "Hello World !"
