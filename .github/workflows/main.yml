@@ -19,4 +19,28 @@ jobs:
     run: echo "Le runner utilise l'OS ${{ runner.os }}"
   - name: Utilise un secret
     run: echo "Le secret est ${{ secrets.MY_SECRET }}"
-  
+ test:
+  # Système d'exploitation sur lequel le job s'exécute
+  runs-on : ubuntu-latest
+  # Stratégie de matrice
+  strategy:
+   # Utilisation d'une matrice pour exécuter des combinaisons de tests
+   matrix:
+    groupe_de_test: [1,2]
+    node: [14,16]
+  # Étapes du job
+  steps:
+   # Checkout du code
+   - uses: actions/checkout@v4
+    # Exécution des tests et sauvegarde des résultats dans un fichier texte
+    # Le nom du fichier texte inclut l'indice du job dans la matrice
+   - run : npm test> test-job-${{ strategy.job-index }}.txt
+   # Téléversement des logs
+   - name: Téléversement des logs
+     uses: actions/upload-artifact@v3
+     with:
+          # Nom unique pour l'artefact, incluant l'indice du job
+        name: Log de construction pour le job ${{ strategy.job-index }}
+
+          # Chemin du fichier à téléverser
+        path: test-job-${{ strategy.job-index }}.txt
