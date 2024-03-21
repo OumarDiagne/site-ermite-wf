@@ -4,8 +4,8 @@ jobs:
  say-greats:
   runs-on: ubuntu-latest
   steps:
-   - name: Print status, env, greats
-   - run: echo "Hello World ! ${{ job.network }}, ${{ job.status }}"
+   - name: Print greats
+   - run: echo "Hello World !"
    - run: env
  afficher:
     runs-on: ubuntu-latest
