@@ -4,5 +4,15 @@ jobs:
  say-greats:
   runs-on: ubuntu-latest
   steps: 
-   - run: echo "Hello World !"
+   - run: echo "Hello World ! "
    - run: env
+ afficher:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Etape 1
+      run: echo "Ceci est l'étape 1"
+      id: etape1
+    - name: Affiche des infos github
+      run: echo "Ce `workflow` a été déclenché par ${{ github.event_name }} sur la branche ${{ github.ref }}"//fin
+    - name: Affiche le statut du job
+      run: echo "Nom du `job` : ${{ job.status }}
