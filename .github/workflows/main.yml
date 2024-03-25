@@ -75,4 +75,37 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Output node version
         run: node --version
+        
+# Nom du workflow Construction et déploiement
+ build2:
+    runs-on: ubuntu-latest
+    # Sorties du job de construction
+    outputs:
+      build_id: ${{ steps.etape_construction.outputs.id_construction }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construction
+        id: etape_construction
+        run: |
+          ./construire
+          echo "::set-output name=id_construction::123"
 
+ # Job de déploiement
+ deploy:
+    # Ce job nécessite le job de construction
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./deploiement --build ${{ needs.build.outputs.build_id }}
+
+ # Job de débogage
+ debug:
+    # Ce job nécessite les jobs de construction et de déploiement
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    # Ce job s'exécute seulement si un autre job échoue
+    if: ${{ failure() }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./debugger
