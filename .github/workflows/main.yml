@@ -62,3 +62,12 @@ jobs:
     steps:
     - name: Affiche des infos github
       run: echo "Ce `workflow` a été déclenché par ${{ github.event_name }} sur la branche ${{ github.ref }}"
+
+ build:
+    strategy:
+      matrix:
+        node: [ '10', '12' ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Affiche la version de node
+        run: echo "Version de node : ${{matrix.node}}"
