@@ -55,3 +55,10 @@ jobs:
         run : echo "$Salutation $Prenom. Aujourd'hui, c'est $JOUR_DE_LA_SEMAINE !"  # Commande à exécuter
         env :
           Prenom: Pierre  # Définition d'une variable d'environnement au niveau de l'étape
+
+
+ print:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Affiche des infos github
+      run: echo "Ce `workflow` a été déclenché par ${{ github.event_name }} sur la branche ${{ github.ref }}"
