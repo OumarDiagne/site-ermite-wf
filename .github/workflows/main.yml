@@ -75,37 +75,25 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Output node version
         run: node --version
-        
-# Nom du workflow Construction et déploiement
- build2:
+ #This example workflow has three jobs: a build job that does a build, a deploy job that requires the build job, and a debug job that requires both the build and deploy jobs and runs only if there is a failure in the workflow. 
+ #The deploy job also uses the needs context to access an output from the build job.       
+ buildTodeploy:
     runs-on: ubuntu-latest
-    # Sorties du job de construction
     outputs:
-      build_id: ${{ steps.etape_construction.outputs.id_construction }}
+      build_id: ${{ steps.build_step.outputs.build_id }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Construction
-        id: etape_construction
-        run: |
-          ./construire
-          echo "::set-output name=id_construction::123"
-
- # Job de déploiement
+      - name: Build
+        id: build_step
+        run: echo "build_id=$RANDOM" >> $GITHUB_OUTPUT
  deploy:
-    # Ce job nécessite le job de construction
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: ./deploiement --build ${{ needs.build.outputs.build_id }}
-
- # Job de débogage
+      - run: echo "Deploying build ${{ needs.build.outputs.build_id }}"
  debug:
-    # Ce job nécessite les jobs de construction et de déploiement
     needs: [build, deploy]
     runs-on: ubuntu-latest
-    # Ce job s'exécute seulement si un autre job échoue
     if: ${{ failure() }}
     steps:
-      - uses: actions/checkout@v4
-      - run: ./debugger
+      - run: echo "Failed to build and deploy"
+
