@@ -64,10 +64,15 @@ jobs:
       run: echo "Ce `workflow` a été déclenché par ${{ github.event_name }} sur la branche ${{ github.ref }}"
 
  build:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: [ '10', '12' ]
-    runs-on: ubuntu-latest
+        os: [ubuntu-latest, windows-latest]
+        node: [14, 16]
     steps:
-      - name: Affiche la version de node
-        run: echo "Version de node : ${{matrix.node}}"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Output node version
+        run: node --version
+
