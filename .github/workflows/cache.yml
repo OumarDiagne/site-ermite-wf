@@ -11,7 +11,7 @@ jobs:
       - name: configure cache
         uses: actions/cache@v3
         with:
-          key: ${{ runner.os }} -${{ hasFiles('./vite-project/package-lock.json') }}
+          key: ${{ runner.os }} -node-${{ hashFiles('./vite-project/package-lock.json') }}
           path: ./vite-project/.npm
       - name: install dependencies
         run: npm ci --cache .npm
