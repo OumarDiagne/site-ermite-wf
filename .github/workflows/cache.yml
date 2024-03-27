@@ -8,11 +8,11 @@ jobs:
         uses: actions/setup-node@v4
       - name: fetch repository
         uses: actions/checkout@v4
-      # - name: configure cache
-      #   uses: actions/cache@v4
-      #   with:
-      #     key: ${{ runner.os }} -node-${{ hashFiles('./vite-project/package-lock.json') }}
-      #     path: ./vite-project/.npm
+      - name: configure cache
+        uses: actions/cache@v4
+        with:
+          key: ${{ runner.os }} -node-${{ hashFiles('./vite-project/package-lock.json') }}
+          path: ./vite-project/.npm
       - name: install dependencies
-        run: npm install
+        run: npm ci --cache .npm
         working-directory: ./vite-project
