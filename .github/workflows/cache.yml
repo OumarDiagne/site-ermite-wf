@@ -1,4 +1,4 @@
-name: Mon Premier Workflow
+name: Node Install
 on: push
 jobs:
   build:
@@ -9,7 +9,7 @@ jobs:
       - name: fetch repository
         uses: actions/checkout@v4
       - name: configure cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: ${{ runner.os }} -node-${{ hashFiles('./vite-project/package-lock.json') }}
           path: ./vite-project/.npm
